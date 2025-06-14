@@ -1,25 +1,26 @@
 package sms;
 
 import org.fest.swing.edt.GuiActionRunner;
+import org.fest.swing.edt.GuiQuery;
 import org.fest.swing.fixture.FrameFixture;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.swing.*;
-
-/**
- * The class that tests ConnectionView class' GUI
- */
 public class ConnectionViewTest {
 
     private FrameFixture connectionFrame;
 
     @Before
     public void setUp() {
-        ConnectionView frame = GuiActionRunner.execute(ConnectionView::new);
+        ConnectionView frame = GuiActionRunner.execute(new GuiQuery<ConnectionView>() {
+            @Override
+            protected ConnectionView executeInEDT() {
+                return new ConnectionView();
+            }
+        });
         connectionFrame = new FrameFixture(frame);
-        connectionFrame.show(); // shows the frame to test
+        connectionFrame.show();
     }
 
     @After
