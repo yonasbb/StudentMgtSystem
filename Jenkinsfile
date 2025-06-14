@@ -2,48 +2,48 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven' // Adjust to match Jenkins global tool config
-        jdk 'JDK 21'        // Or 'JDK 17' if using Java 17
+        maven 'Maven'     // Match Jenkins global tool name
+        jdk 'JDK 21'      // Match Jenkins global JDK name
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main',  git 'https://github.com/yonasbb/StudentMgtSystem.git'
+                git branch: 'main', url: 'https://github.com/yonasbb/StudentMgtSystem.git'
             }
         }
 
         stage('Build') {
             steps {
-                sh 'mvn clean install'
+                bat 'mvn clean install'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'mvn test'
+                bat 'mvn test'
             }
         }
 
         stage('Package') {
             steps {
-                sh 'mvn package'
+                bat 'mvn package'
             }
         }
 
         stage('Archive Artifacts') {
             steps {
-                archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+                archiveArtifacts artifacts: 'target\\*.jar', fingerprint: true
             }
         }
     }
 
     post {
         success {
-            echo 'Build succeeded!'
+            echo '✅ Build succeeded!'
         }
         failure {
-            echo 'Build failed!'
+            echo '❌ Build failed!'
         }
     }
 }
