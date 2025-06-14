@@ -4,6 +4,8 @@ import org.fest.swing.fixture.FrameFixture;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import javax.swing.JFrame;
+
 
 /**
  * The class that tests ConnectionView class' GUI
