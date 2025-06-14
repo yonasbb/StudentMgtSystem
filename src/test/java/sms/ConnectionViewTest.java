@@ -11,17 +11,18 @@ public class ConnectionViewTest {
 
     private FrameFixture connectionFrame;
 
-    @Before
-    public void setUp() {
-        ConnectionView frame = GuiActionRunner.execute(new GuiQuery<ConnectionView>() {
-            @Override
-            protected ConnectionView executeInEDT() {
-                return new ConnectionView();
-            }
-        });
-        connectionFrame = new FrameFixture(frame);
-        connectionFrame.show();
-    }
+	@Before
+	public void setUp() {
+		ConnectionView frame = GuiActionRunner.execute(new GuiQuery<ConnectionView>() {
+			@Override
+			protected ConnectionView executeInEDT() {
+				return new ConnectionView();
+			}
+		});
+		connectionFrame = new FrameFixture(frame);
+		connectionFrame.show(); // ✅ CRITICAL: make sure the frame is actually visible and showing
+	}
+
 
     @After
     public void tearDown() {
