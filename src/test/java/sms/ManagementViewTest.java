@@ -56,18 +56,24 @@ public class ManagementViewTest {
 
 		managementFrame.button("addCourseButton").click();
 		if (DBHandler.getFaculties().length > 0) {
-			managementFrame.optionPane().requireMessage("Type the name of the course");
-			managementFrame.optionPane().textBox().enterText("NewCourse");
-			managementFrame.optionPane().buttonWithText("OK").click();
-			managementFrame.optionPane().buttonWithText("OK").click();
-			managementFrame.optionPane().textBox().enterText("12");
-			managementFrame.optionPane().buttonWithText("OK").click();
+			addCourse("NewCourse", "12");
 			managementFrame.optionPane().requireMessage("The course has been added successfully!");
-		} else
+		} else {
 			managementFrame.optionPane().requireErrorMessage()
-					.requireMessage("You can't add a course!\nAdd a faculty first");
-
+				.requireMessage("You can't add a course!\nAdd a faculty first");
+		}
 	}
+
+	private void addCourse(String courseName, String duration) {
+		managementFrame.optionPane().requireMessage("Type the name of the course");
+		managementFrame.optionPane().textBox().enterText(courseName);
+		managementFrame.optionPane().buttonWithText("OK").click();
+		managementFrame.optionPane().buttonWithText("OK").click();
+		managementFrame.optionPane().textBox().enterText(duration);
+		managementFrame.optionPane().buttonWithText("OK").click();
+		managementFrame.robot().waitForIdle();
+	}
+
 
 	@Test
 	public void addCourseWithoutName() {
