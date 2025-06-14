@@ -15,6 +15,7 @@ public class ConnectionViewTest {
 
 	private FrameFixture connectionFrame;
 	private ConnectionView connectionView;
+	private ConnectionView frame;
 
 	@Before
 	public void setUp() {
