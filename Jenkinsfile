@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/yonasbb/StudentMgtSystem.git'
+                git branch: 'main',  git 'https://github.com/yonasbb/StudentMgtSystem.git'
             }
         }
 
