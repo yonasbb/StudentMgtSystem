@@ -18,8 +18,8 @@ public class ConnectionViewTest {
 
 	@Before
 	public void setUp() {
-		connectionView = new ConnectionView();
-		connectionFrame = new FrameFixture(ConnectionView.connectionFrame);
+		frame = new ConnectionView();
+		frame.setVisible(true); // This makes sure the UI is shown during the test
 	}
 
 	@After
