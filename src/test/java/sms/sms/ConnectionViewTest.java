@@ -20,7 +20,11 @@ public class ConnectionViewTest {
 	@Before
 	public void setUp() {
 		frame = new ConnectionView();
-		frame.setVisible(true); // This makes sure the UI is shown during the test
+		JFrame testFrame = new JFrame();
+		testFrame.setContentPane(frame); // use the panel as content
+		testFrame.pack();
+		testFrame.setVisible(true);
+
 	}
 
 	@After
