@@ -6,10 +6,6 @@ pipeline {
         jdk 'JDK 11'        // Or 'JDK 17' if using Java 17
     }
 
-    environment {
-        // Define environment variables if needed
-    }
-
     stages {
         stage('Checkout') {
             steps {
