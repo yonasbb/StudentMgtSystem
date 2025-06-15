@@ -1,33 +1,18 @@
 package sms;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
-
 import java.awt.*;
 import java.awt.event.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import javax.swing.border.LineBorder;
 
-public class ManagementView extends JFrame {
-
-    private JTable table;
-    private JTextField nameField;
-    private JTextField surnameField;
-    private JTextField ageField;
-    private JTextField startedDateField;
-    private JComboBox genderSelectionBox;
-    private JComboBox courseSelectionBox;
+public class ManagementView {
+    static JFrame managementFrame;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
-            Translator.getMessagesFromXML();
             try {
                 ManagementView window = new ManagementView();
-                window.setVisible(true);
+                window.managementFrame.setVisible(true);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -35,35 +20,32 @@ public class ManagementView extends JFrame {
     }
 
     public ManagementView() {
-        setTitle(Translator.getValue("sms"));
-        setBounds(100, 100, 860, 540);
-        setResizable(false);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
-
-        initComponents();
-        updateCourses();
-        DBHandler.updateStudents();
+        initialize();
+        managementFrame.setVisible(true);
     }
 
-    private void initComponents() {
-        JPanel tablePanel = new JPanel();
-        tablePanel.setBorder(new LineBorder(SystemColor.textHighlight, 5));
-        tablePanel.setBounds(260, 10, 575, 395);
-        tablePanel.setLayout(null);
-        getContentPane().add(tablePanel);
+    private void initialize() {
+        managementFrame = new JFrame();
+        managementFrame.setBounds(100, 100, 450, 300);
+        managementFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        managementFrame.getContentPane().setLayout(null);
 
-        JScrollPane tableScrollPane = new JScrollPane();
-        tableScrollPane.setBounds(10, 10, 555, 375);
-        tablePanel.add(tableScrollPane);
+        JLabel lblTitle = new JLabel("Student Management System");
+        lblTitle.setFont(new Font("Tahoma", Font.BOLD, 18));
+        lblTitle.setBounds(90, 10, 300, 30);
+        managementFrame.getContentPane().add(lblTitle);
 
-        table = new JTable();
-        table.setColumnSelectionAllowed(true);
-        table.setModel(new DefaultTableModel(
-            new Object[][] {},
-            new String[] {
-                Translator.getValue("ID"), Translator.getValue("name"), Translator.getValue("surname"),
-                Translator.getValue("age"), Translator.getValue("gender"), Translator.getValue("course"),
-                Translator.getValue("started"), Translator.getValue("graduation")
-            }) {
-            boolean[] columnEditables = new boolean[] { false, true, true, true, true, false, false, false };
+        JButton btnAdd = new JButton("Add Student");
+        btnAdd.setBounds(50, 70, 150, 30);
+        managementFrame.getContentPane().add(btnAdd);
+
+        JButton btnView = new JButton("View Students");
+        btnView.setBounds(220, 70, 150, 30);
+        managementFrame.getContentPane().add(btnView);
+
+        JButton btnExit = new JButton("Exit");
+        btnExit.setBounds(140, 120, 150, 30);
+        btnExit.addActionListener(e -> System.exit(0));
+        managementFrame.getContentPane().add(btnExit);
+    }
+} 
