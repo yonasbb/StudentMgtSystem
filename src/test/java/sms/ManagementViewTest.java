@@ -71,7 +71,8 @@ public class ManagementViewTest {
 		managementFrame.optionPane().buttonWithText("OK").click();
 		managementFrame.optionPane().textBox().enterText(duration);
 		managementFrame.optionPane().buttonWithText("OK").click();
-		managementFrame.robot().waitForIdle();
+		managementFrame.target().getToolkit().sync(); // or remove if not essential
+
 	}
 
 
